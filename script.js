@@ -15,8 +15,13 @@ let option_to;
 // resultType.addEventListener("change", myResult);
 
 // taking initial value
+// if (!NaN(inputType.value)) {
+
+
 option_from = inputType.value;
 option_to = resultType.value;
+
+
 
 convert.addEventListener("click", () => {
     myResult();
@@ -32,14 +37,42 @@ swap.addEventListener("click", () => {
 
     let atype = inputType.value;
     let btype = resultType.value;
-
-
     inputType.value = btype;
     resultType.value = atype;
 });
 
+function validation(inputType, inputvalue) {
+    console.log(inputType, inputvalue);
+    if (inputType == "Decimal") {
+        let regexd = /^\d+(\.\d{1,2})?$/;
+        let valid = regexd.test(inputvalue);
+        if (valid == false) {
+            alert("invalid decimal value");
+        }
+    } else if (inputType == "Binary") {
+        let regexb = /^[0-1]{1,}$/;
+        let valid = regexb.test(inputvalue);
+        if (valid == false) {
+            alert("invalid decimal value");
+        }
+
+    } else if (inputType == "Octal") {
+        let regexo = /^\d+(\.\d{1,2})?$/;
+        let valid = regexo.test(inputvalue);
+        if (valid == false) {
+            alert("invalid decimal value");
+        }
+
+    } else if (inputType == "Hexadecimal") {
+        //no validation required
+    } else {
+        alert("invalid type value");
+    }
+}
+
 function myResult() {
 
+    validation(inputType.value, input.value);
 
     // when we change the input and output type vale we need to updata the 
     // option_from and option_to
@@ -99,3 +132,4 @@ function myResult() {
 
     }
 }
+// }
